@@ -29,6 +29,8 @@
     </tbody>
   </table>
   
+  <p>total inventory : <b id="total"></b></p>
+  
   <a href="formtambah.html">tambah barang</a>
   
   <script type="module">
@@ -39,6 +41,7 @@
      let daftarBarang = await ambilDaftarBarang();
      
      let nomor = 1
+     let total = 0
      daftarBarang.forEach((data)=> {
        elemenDaftarBarang.append(
          "<tr>" +
@@ -50,8 +53,11 @@
          "<td>" + "<a href='#' class='me-2 link-ubah' data='"+ data.id +"'>ubah</a><button class='btn btn-danger tombol-hapus' data='"+ data.id +"'>hapus</button>" +"</td>" +
          "</tr>"
          )
-         nomor = nomor + 1
+         total = total +(data.harga * data.jumlah)
+         nomor = nomor =1
      })
+     
+     $("#total").html(total)
      
      $(".tombol-hapus").click(async function(){
        if (confirm("apakah benar mau menghapus?")) {
